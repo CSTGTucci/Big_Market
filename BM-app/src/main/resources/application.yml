@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: BM-app
+  profiles:
+    active: dev
