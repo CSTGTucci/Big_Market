@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.infrastructure.persistent.dao.IStrategyRuleDao">
+
+    <resultMap id="dataMap" type="org.example.infrastructure.persistent.po.StrategyRule">
+        <id column="id" property="id"/>
+        <result column="strategyId" property="strategyId"/>
+        <result column="awardId" property="awardId"/>
+        <result column="ruleType" property="ruleType"/>
+        <result column="ruleModel" property="ruleModel"/>
+        <result column="ruleValue" property="ruleValue"/>
+        <result column="rule_desc" property="ruleDesc"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <select id="queryStrategyRuleList" resultMap="dataMap">
+        SELECT rule_desc
+        from strategy_rule
+        limit 10
+    </select>
+
+</mapper>
