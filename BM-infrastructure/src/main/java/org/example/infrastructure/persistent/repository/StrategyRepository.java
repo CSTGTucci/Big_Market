@@ -1,8 +1,8 @@
 package org.example.infrastructure.persistent.repository;
 
-import org.example.domain.strategy.model.StrategyAwardEntity;
-import org.example.domain.strategy.model.StrategyEntity;
-import org.example.domain.strategy.model.StrategyRuleEntity;
+import org.example.domain.strategy.model.entity.StrategyAwardEntity;
+import org.example.domain.strategy.model.entity.StrategyEntity;
+import org.example.domain.strategy.model.entity.StrategyRuleEntity;
 import org.example.domain.strategy.repository.IStrategyRepository;
 import org.example.infrastructure.persistent.dao.IStrategyAwardDao;
 import org.example.infrastructure.persistent.dao.IStrategyDao;
@@ -15,7 +15,6 @@ import org.example.types.common.Constants;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.*;
 @Repository
 public class StrategyRepository implements IStrategyRepository {
@@ -101,6 +100,15 @@ public class StrategyRepository implements IStrategyRepository {
                 .ruleValue(strategyRuleRes.getRuleValue())
                 .ruleDesc(strategyRuleRes.getRuleDesc())
                 .build();
+    }
+
+    @Override
+    public String queryStrategyRuleValue(Long strategyId, Integer awardId, String ruleModel) {
+        StrategyRule strategyRule = new StrategyRule();
+        strategyRule.setStrategyId(strategyId);
+        strategyRule.setAwardId(awardId);
+        strategyRule.setRuleModel(ruleModel);
+        return strategyRuleDao.queryStrategyRuleValue(strategyRule);
     }
 
 }

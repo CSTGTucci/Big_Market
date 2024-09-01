@@ -1,10 +1,9 @@
 package org.example.domain.strategy.repository;
 
-import org.example.domain.strategy.model.StrategyAwardEntity;
-import org.example.domain.strategy.model.StrategyEntity;
-import org.example.domain.strategy.model.StrategyRuleEntity;
+import org.example.domain.strategy.model.entity.StrategyAwardEntity;
+import org.example.domain.strategy.model.entity.StrategyEntity;
+import org.example.domain.strategy.model.entity.StrategyRuleEntity;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,4 +20,6 @@ public interface IStrategyRepository {
     StrategyEntity queryStrategyEntityByStrategyId(Long strategyID);
 
     StrategyRuleEntity queryStrategyRule(Long strategyID, String ruleModel);
+
+    String queryStrategyRuleValue(Long strategyId, Integer awardId, String ruleModel);
 }

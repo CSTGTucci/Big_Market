@@ -1,9 +1,9 @@
 package org.example.domain.strategy.service.Armory;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.strategy.model.StrategyAwardEntity;
-import org.example.domain.strategy.model.StrategyEntity;
-import org.example.domain.strategy.model.StrategyRuleEntity;
+import org.example.domain.strategy.model.entity.StrategyAwardEntity;
+import org.example.domain.strategy.model.entity.StrategyEntity;
+import org.example.domain.strategy.model.entity.StrategyRuleEntity;
 import org.example.domain.strategy.repository.IStrategyRepository;
 import org.example.types.enums.ResponseCode;
 import org.example.types.exception.AppException;
