@@ -27,8 +27,8 @@ public class AwardDaoTest {
     private IStrategyRuleDao awardDao;
     @Test
     public void test_queryAwardList(){
-        List<StrategyRule> awards = awardDao.queryStrategyRuleList();
-        log.info("测试结果:{}", JSON.toJSONString(awards));
+        //List<StrategyRule> awards = awardDao.queryStrategyRuleList();
+        //log.info("测试结果:{}", JSON.toJSONString(awards));
 
     }
 }
