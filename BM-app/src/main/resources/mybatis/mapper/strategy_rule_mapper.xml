@@ -24,6 +24,6 @@
         <if test="awardId != null">
             and award_id = #{awardId}
         </if>
-        limit 1
+--         limit 1
     </select>
 </mapper>
