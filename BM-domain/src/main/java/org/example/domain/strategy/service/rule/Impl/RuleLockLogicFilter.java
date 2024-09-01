@@ -21,6 +21,7 @@ public class RuleLockLogicFilter implements ILogicFilter<RuleActionEntity.Raffle
     private Long userRaffleCount = 0L;
     @Override
     public RuleActionEntity<RuleActionEntity.RaffleCenterEntity> filter(RuleMatterEntity ruleMatterEntity) {
+        log.info("规则过滤-次数锁 userId:{} strategyId:{} ruleModel:{}", ruleMatterEntity.getUserId(), ruleMatterEntity.getStrategyId(), ruleMatterEntity.getRuleModel());
         String ruleValue = repository.queryStrategyRuleValue(ruleMatterEntity.getStrategyId(),ruleMatterEntity.getAwardId(),ruleMatterEntity.getRuleModel());
         long raffleCount = Long.parseLong(ruleValue);
 

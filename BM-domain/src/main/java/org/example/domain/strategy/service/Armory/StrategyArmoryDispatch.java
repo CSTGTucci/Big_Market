@@ -29,7 +29,9 @@ public class StrategyArmoryDispatch implements IStrategyArmory,IStrategyDispatch
 
         //2.权重策略配置 rule-weight
         StrategyEntity strategyEntity = repository.queryStrategyEntityByStrategyId(strategyID);
+
         String ruleWeight = strategyEntity.getRuleWeight();
+
         if (null == ruleWeight ) return true;
 
         StrategyRuleEntity strategyRuleEntity = repository.queryStrategyRule(strategyID,ruleWeight);

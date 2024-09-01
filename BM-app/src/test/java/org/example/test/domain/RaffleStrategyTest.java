@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.example.domain.strategy.model.entity.RaffleAwardEntity;
 import org.example.domain.strategy.model.entity.RaffleFactorEntity;
+import org.example.domain.strategy.service.Armory.IStrategyArmory;
 import org.example.domain.strategy.service.IRaffleStrategy;
 import org.example.domain.strategy.service.rule.Impl.RuleLockLogicFilter;
 import org.example.domain.strategy.service.rule.Impl.RuleWeightLogicFilter;
@@ -21,7 +22,8 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class RaffleStrategyTest {
 
-
+    @Resource
+    private IStrategyArmory strategyArmory;
     @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
@@ -32,17 +34,18 @@ public class RaffleStrategyTest {
     @Before
     public void setUp() {
         // 策略装配 100001、100002、100003
-        //log.info("测试结果：{}", strategyArmory.assembleLotteryStrategy(100001L));
+
+        log.info("测试结果：{}", strategyArmory.assembleLotteryStrategy(10003L));
 
         // 通过反射 mock 规则中的值
-        ReflectionTestUtils.setField(ruleWeightLogicFilter, "userScore", 4500L);
+        ReflectionTestUtils.setField(ruleWeightLogicFilter, "userScore", 4000L);
         ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 0L);
     }
 
     @Test
     public void test_performRaffle() {
         RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
-                .userId("Tucci")
+                .userId("tucci")
                 .strategyId(10001L)
                 .build();
 
@@ -55,7 +58,7 @@ public class RaffleStrategyTest {
     @Test
     public void test_performRaffle_blacklist() {
         RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
-                .userId("user003")  // 黑名单用户 user001,user002,user003
+                .userId("user001")  // 黑名单用户 user001,user002,user003
                 .strategyId(10001L)
                 .build();
 
@@ -73,7 +76,7 @@ public class RaffleStrategyTest {
     public void test_raffle_center_rule_lock(){
         RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
                 .userId("tucci")
-                .strategyId(10001L)
+                .strategyId(10003L)
                 .build();
 
         RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
