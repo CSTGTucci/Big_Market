@@ -25,7 +25,7 @@ public class StrategyArmoryDispatchTest {
     private IStrategyRuleDao strategyRuleDao;
     @Before
     public void test_strategyArmory() {
-        boolean success =  strategyArmory.assembleLotteryStrategy(10001L);
+        boolean success =  strategyArmory.assembleLotteryStrategy(100001L);
         log.info("测试结果:{}",success);
 //        StrategyRule rule = new StrategyRule();
 //        rule.setStrategyId(10001L);
@@ -34,7 +34,7 @@ public class StrategyArmoryDispatchTest {
     }
     @Test
     public void test_getAssembleRandomAwardId(){
-        log.info("测试结果：{} - 奖品",strategyDispatch.getRandomAwardId(10001L));
+        log.info("测试结果：{} - 奖品",strategyDispatch.getRandomAwardId(100001L));
         //log.info(strategyRuleDao.queryStrategyRuleList().toString());
     }
     @Test
