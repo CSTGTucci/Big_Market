@@ -171,7 +171,7 @@ public class StrategyRepository implements IStrategyRepository {
 
         // 3. 构建 Rule Tree
         RuleTreeVO ruleTreeVODB = RuleTreeVO.builder()
-                .treeId(ruleTree.getTreeId())
+                    .treeId(ruleTree.getTreeId())
                 .treeName(ruleTree.getTreeName())
                 .treeDesc(ruleTree.getTreeDesc())
                 .treeRootRuleNode(ruleTree.getTreeRootRuleKey())
