@@ -18,8 +18,8 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
 
     private final RuleTreeVO ruleTreeVO;
 
-    public DecisionTreeEngine(Map<String, ILogicTreeNode> logicTreeNodeGrouop, RuleTreeVO ruleTreeVO) {
-        this.logicTreeNodeGroup = logicTreeNodeGrouop;
+    public DecisionTreeEngine(Map<String, ILogicTreeNode> logicTreeNodeGroup, RuleTreeVO ruleTreeVO) {
+        this.logicTreeNodeGroup = logicTreeNodeGroup;
         this.ruleTreeVO = ruleTreeVO;
     }
 
