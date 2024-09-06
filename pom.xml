@@ -13,6 +13,7 @@
         <module>BM-trigger</module>
         <module>BM-infrastructure</module>
         <module>BM-types</module>
+        <module>BM-api</module>
     </modules>
 
     <repositories>
