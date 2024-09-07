@@ -53,6 +53,7 @@ public class IRaffleController implements IRaffleService {
                     .data(armoryStatus)
                     .build();
             log.info("抽奖策略装配完成 strategyId：{} response: {}", strategyId, JSON.toJSONString(response));
+            return response;
         } catch (Exception e){
             log.error("抽奖策略装配失败 strategyId：{}", strategyId, e);
             return Response.<Boolean>builder()
@@ -60,7 +61,6 @@ public class IRaffleController implements IRaffleService {
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
         }
-        return null;
     }
     /**
      * 查询奖品列表
