@@ -9,7 +9,11 @@ import org.example.domain.activity.model.valobj.OrderStateVO;
 
 import java.util.Date;
 
-
+/**
+ * @author Fuzhengwei bugstack.cn @小傅哥
+ * @description 活动参与实体对象
+ * @create 2024-03-16 09:02
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,6 +24,11 @@ public class ActivityOrderEntity {
      * 用户ID
      */
     private String userId;
+
+    /**
+     * sku
+     */
+    private Long sku;
 
     /**
      * 活动ID
@@ -65,5 +74,10 @@ public class ActivityOrderEntity {
      * 订单状态
      */
     private OrderStateVO state;
+
+    /**
+     * 业务仿重ID - 外部透传的，确保幂等
+     */
+    private String outBusinessNo;
 
 }
