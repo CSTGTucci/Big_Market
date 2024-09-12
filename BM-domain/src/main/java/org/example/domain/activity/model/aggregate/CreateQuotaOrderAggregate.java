@@ -11,7 +11,7 @@ import org.example.domain.activity.model.entity.ActivityOrderEntity;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateOrderAggregate {
+public class CreateQuotaOrderAggregate {
 
     /**
      * 用户ID

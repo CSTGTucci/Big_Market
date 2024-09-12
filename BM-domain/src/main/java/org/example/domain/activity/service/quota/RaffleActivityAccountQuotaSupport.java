@@ -1,17 +1,17 @@
-package org.example.domain.activity.service;
+package org.example.domain.activity.service.quota;
 
 import org.example.domain.activity.model.entity.ActivityCountEntity;
 import org.example.domain.activity.model.entity.ActivityEntity;
 import org.example.domain.activity.model.entity.ActivitySkuEntity;
 import org.example.domain.activity.repository.IActivityRepository;
-import org.example.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import org.example.domain.activity.service.quota.rule.factory.DefaultActivityChainFactory;
 
-public class RaffleActivitySupport {
+public class RaffleActivityAccountQuotaSupport {
 
     protected DefaultActivityChainFactory defaultActivityChainFactory;
     protected IActivityRepository activityRepository;
 
-    public RaffleActivitySupport(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public RaffleActivityAccountQuotaSupport(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         this.activityRepository = activityRepository;
         this.defaultActivityChainFactory = defaultActivityChainFactory;
     }

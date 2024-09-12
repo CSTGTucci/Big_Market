@@ -1,21 +1,22 @@
-package org.example.domain.activity.service;
+package org.example.domain.activity.service.quota;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.example.domain.activity.model.aggregate.CreateOrderAggregate;
+import org.example.domain.activity.model.aggregate.CreateQuotaOrderAggregate;
 import org.example.domain.activity.model.entity.*;
 import org.example.domain.activity.repository.IActivityRepository;
-import org.example.domain.activity.service.rule.IActionChain;
-import org.example.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import org.example.domain.activity.service.IRaffleActivityAccountQuotaService;
+import org.example.domain.activity.service.quota.rule.IActionChain;
+import org.example.domain.activity.service.quota.rule.factory.DefaultActivityChainFactory;
 import org.example.types.enums.ResponseCode;
 import org.example.types.exception.AppException;
 
 @Slf4j
-public abstract class AbstractRaffleActivity extends RaffleActivitySupport implements IRaffleOrder{
+public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityAccountQuotaSupport implements IRaffleActivityAccountQuotaService {
 
 
-    public AbstractRaffleActivity(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public AbstractRaffleActivityAccountQuota(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
     }
 
@@ -34,7 +35,7 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
     }
 
     @Override
-    public String createSkuRechargeOrder(SkuRechargeEntity skuRechargeEntity) {
+    public String createOrder(SkuRechargeEntity skuRechargeEntity) {
         //参数校验
         String userId = skuRechargeEntity.getUserId();
         String outBusinessNo = skuRechargeEntity.getOutBusinessNo();
@@ -50,13 +51,13 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
         IActionChain actionChain = defaultActivityChainFactory.openActionChain();
         actionChain.action(activitySkuEntity, activityEntity, activityCountEntity);
         //构建顶点聚合对象
-        CreateOrderAggregate createOrderAggregate =  buildOrderAggregate(skuRechargeEntity,activitySkuEntity,activityEntity,activityCountEntity);
+        CreateQuotaOrderAggregate createQuotaOrderAggregate =  buildOrderAggregate(skuRechargeEntity,activitySkuEntity,activityEntity,activityCountEntity);
         //保存单号
-        doSaveOrder(createOrderAggregate);
-        return createOrderAggregate.getActivityOrderEntity().getOrderId();
+        doSaveOrder(createQuotaOrderAggregate);
+        return createQuotaOrderAggregate.getActivityOrderEntity().getOrderId();
     }
 
-    protected abstract void doSaveOrder(CreateOrderAggregate createOrderAggregate);
+    protected abstract void doSaveOrder(CreateQuotaOrderAggregate createQuotaOrderAggregate);
 
-    protected abstract CreateOrderAggregate buildOrderAggregate(SkuRechargeEntity skuRechargeEntity, ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);
+    protected abstract CreateQuotaOrderAggregate buildOrderAggregate(SkuRechargeEntity skuRechargeEntity, ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);
 }

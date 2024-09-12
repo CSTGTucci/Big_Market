@@ -1,22 +1,17 @@
-package org.example.infrastructure.persistent.po;
+package org.example.domain.activity.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
-
-import java.util.Date;
 
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleActivityAccountDay {
+public class ActivityAccountDayEntity {
 
-    /** 自增ID */
-    private String id;
     /** 用户ID */
     private String userId;
     /** 活动ID */
@@ -27,9 +22,5 @@ public class RaffleActivityAccountDay {
     private Integer dayCount;
     /** 日次数-剩余 */
     private Integer dayCountSurplus;
-    /** 创建时间 */
-    private Date createTime;
-    /** 更新时间 */
-    private Date updateTime;
 
 }
