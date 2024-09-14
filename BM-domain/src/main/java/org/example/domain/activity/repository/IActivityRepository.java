@@ -6,6 +6,7 @@ import org.example.domain.activity.model.entity.*;
 import org.example.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 
 import java.util.Date;
+import java.util.List;
 
 public interface IActivityRepository {
     ActivitySkuEntity queryActivitySku(Long sku);
@@ -38,4 +39,5 @@ public interface IActivityRepository {
 
     ActivityAccountDayEntity queryActivityAccountDayByUserId(String userId, Long activityId, String day);
 
+    List<ActivitySkuEntity> queryActivitySkuListByActivityId(Long activityId);
 }

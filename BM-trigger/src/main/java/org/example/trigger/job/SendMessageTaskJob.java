@@ -29,7 +29,7 @@ public class SendMessageTaskJob {
         try {
             // 获取分库数量
             int dbCount = dbRouter.dbCount();
-            log.info("开始执行");
+            //log.info("开始执行");
             // 逐个库扫描表【每个库一个任务表】
             for (int dbIdx = 1; dbIdx <= dbCount; dbIdx++) {
                 int finalDbIdx = dbIdx;

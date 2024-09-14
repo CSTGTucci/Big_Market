@@ -11,7 +11,11 @@ import org.example.domain.activity.repository.IActivityRepository;
 import org.example.domain.activity.service.IRaffleActivityPartakeService;
 import org.example.types.enums.ResponseCode;
 import org.example.types.exception.AppException;
-
+/*
+*
+* 参与活动
+*
+* */
 import java.util.Date;
 
 @Slf4j
@@ -23,6 +27,14 @@ public abstract class AbstractRaffleActivityPartake implements IRaffleActivityPa
         this.activityRepository = activityRepository;
     }
 
+
+    @Override
+    public UserRaffleOrderEntity createOrder(String userId, Long activityId) {
+        return createOrder(PartakeRaffleActivityEntity.builder()
+                .userId(userId)
+                .activityId(activityId)
+                .build());
+    }
 
     @Override
     public UserRaffleOrderEntity createOrder(PartakeRaffleActivityEntity partakeRaffleActivityEntity) {
