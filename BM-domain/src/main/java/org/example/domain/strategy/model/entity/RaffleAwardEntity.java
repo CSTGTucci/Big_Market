@@ -16,4 +16,5 @@ public class RaffleAwardEntity {
     private Integer sort;
     private String awardConfig;
     private String awardTitle;
+
 }
