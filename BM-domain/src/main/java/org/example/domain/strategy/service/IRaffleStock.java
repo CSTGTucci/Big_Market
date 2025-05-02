@@ -1,4 +1,4 @@
-package org.example.domain.strategy;
+package org.example.domain.strategy.service;
 
 
 import org.example.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
