@@ -36,25 +36,38 @@ public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityA
 
     @Override
     public String createOrder(SkuRechargeEntity skuRechargeEntity) {
-        //参数校验
+        // 1. 参数校验
         String userId = skuRechargeEntity.getUserId();
-        String outBusinessNo = skuRechargeEntity.getOutBusinessNo();
         Long sku = skuRechargeEntity.getSku();
-        if(null == sku || StringUtils.isBlank(outBusinessNo) || StringUtils.isBlank(userId)) {
-            throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(),ResponseCode.ILLEGAL_PARAMETER.getInfo());
+        String outBusinessNo = skuRechargeEntity.getOutBusinessNo();
+        if (null == sku || StringUtils.isBlank(userId) || StringUtils.isBlank(outBusinessNo)) {
+            throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
         }
-        //查询基础信息
-        ActivitySkuEntity activitySkuEntity = activityRepository.queryActivitySku(sku);
-        ActivityEntity activityEntity = activityRepository.queryRaffleActivityByActivityId(activitySkuEntity.getActivityId());
-        ActivityCountEntity activityCountEntity = activityRepository.queryRaffleActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
-        //规则校验
+
+        // 2. 查询基础信息
+        // 2.1 通过sku查询活动信息
+        ActivitySkuEntity activitySkuEntity = queryActivitySku(sku);
+        // 2.2 查询活动信息
+        ActivityEntity activityEntity = queryRaffleActivityByActivityId(activitySkuEntity.getActivityId());
+        // 2.3 查询次数信息（用户在活动上可参与的次数）
+        ActivityCountEntity activityCountEntity = queryRaffleActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
+
+        // 3. 活动动作规则校验 「过滤失败则直接抛异常」
         IActionChain actionChain = defaultActivityChainFactory.openActionChain();
         actionChain.action(activitySkuEntity, activityEntity, activityCountEntity);
-        //构建顶点聚合对象
-        CreateQuotaOrderAggregate createQuotaOrderAggregate =  buildOrderAggregate(skuRechargeEntity,activitySkuEntity,activityEntity,activityCountEntity);
-        //保存单号
-        doSaveOrder(createQuotaOrderAggregate);
-        return createQuotaOrderAggregate.getActivityOrderEntity().getOrderId();
+
+        // 4. 构建订单聚合对象
+        CreateQuotaOrderAggregate createOrderAggregate = buildOrderAggregate(skuRechargeEntity, activitySkuEntity, activityEntity, activityCountEntity);
+
+        // 5. 保存订单
+        doSaveOrder(createOrderAggregate);
+
+        // 6. 返回单号
+        return createOrderAggregate.getActivityOrderEntity().getOrderId();
+    }
+
+    public ActivityEntity queryRaffleActivityByActivityId(Long activityId) {
+        return activityRepository.queryRaffleActivityByActivityId(activityId);
     }
 
     protected abstract void doSaveOrder(CreateQuotaOrderAggregate createQuotaOrderAggregate);
