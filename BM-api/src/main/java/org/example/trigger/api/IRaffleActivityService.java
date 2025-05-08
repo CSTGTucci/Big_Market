@@ -6,5 +6,8 @@ import org.example.types.model.Response;
 
 public interface IRaffleActivityService {
     Response<Boolean> armory(Long activityId);
+
     Response<ActivityDrawResponseDTO> draw(ActivityDrawRequestDTO activityDrawRequestDTO);
+    //签到
+    Response<Boolean> calendarSignRebate(String userId);
 }

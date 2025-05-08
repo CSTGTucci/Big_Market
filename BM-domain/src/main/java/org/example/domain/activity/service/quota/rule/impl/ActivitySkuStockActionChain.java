@@ -40,7 +40,7 @@ public class ActivitySkuStockActionChain extends AbstractActionChain {
 
             return true;
         }
-
+        log.info("失败了！！");
         throw new AppException(ResponseCode.ACTIVITY_SKU_STOCK_ERROR.getCode(), ResponseCode.ACTIVITY_SKU_STOCK_ERROR.getInfo());
     }
 
