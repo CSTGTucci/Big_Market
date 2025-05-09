@@ -1,9 +1,6 @@
 package org.example.domain.activity.service;
 
-import org.example.domain.activity.model.entity.ActivityAccountEntity;
-import org.example.domain.activity.model.entity.ActivityOrderEntity;
-import org.example.domain.activity.model.entity.ActivityShopCartEntity;
-import org.example.domain.activity.model.entity.SkuRechargeEntity;
+import org.example.domain.activity.model.entity.*;
 
 public interface IRaffleActivityAccountQuotaService {
 
@@ -12,6 +9,12 @@ public interface IRaffleActivityAccountQuotaService {
 
 
     String createOrder(SkuRechargeEntity skuRechargeEntity);
+
+    /**
+     * 订单出货 - 积分充值
+     * @param deliveryOrderEntity 出货单实体对象
+     */
+    void updateOrder(DeliveryOrderEntity deliveryOrderEntity);
 
     Integer queryRaffleActivityAccountDayPartakeCount(Long activityId, String userId);
     ActivityAccountEntity queryActivityAccountEntity(Long activityId, String userId);

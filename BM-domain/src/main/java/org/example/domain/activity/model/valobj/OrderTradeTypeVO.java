@@ -1,18 +1,18 @@
 package org.example.domain.activity.model.valobj;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 
 @Getter
 @AllArgsConstructor
-public enum OrderStateVO {
+public enum OrderTradeTypeVO {
 
-    wait_pay("wait_pay","待支付"),
-    completed("completed", "完成"),
+    credit_pay_trade("credit_pay_trade","积分兑换，需要支付类交易"),
+    rebate_no_pay_trade("rebate_no_pay_trade", "返利奖品，不需要支付类交易"),
     ;
 
     private final String code;
     private final String desc;
+
 }
