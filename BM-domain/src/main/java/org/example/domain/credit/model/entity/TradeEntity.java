@@ -28,3 +28,4 @@ public class TradeEntity {
     private String outBusinessNo;
 
 }
+

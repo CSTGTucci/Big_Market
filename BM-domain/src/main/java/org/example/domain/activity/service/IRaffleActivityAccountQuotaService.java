@@ -8,7 +8,7 @@ public interface IRaffleActivityAccountQuotaService {
     ActivityOrderEntity createRaffleActivityOrder(ActivityShopCartEntity activityShopCartEntity);
 
 
-    String createOrder(SkuRechargeEntity skuRechargeEntity);
+    UnpaidActivityOrderEntity createOrder(SkuRechargeEntity skuRechargeEntity);
 
     /**
      * 订单出货 - 积分充值
